@@ -1,18 +1,30 @@
 import classnames from "classnames";
+import { useRouter } from "next/router";
 
 export function HeroImage({
   src,
   title,
   genres,
   description,
+  id,
 }: {
   src: string;
   title: string;
   genres: string[];
   description: string;
+  id: number;
 }) {
+  let router = useRouter();
+
+  function redirect(href: string) {
+    router.push(href);
+  }
+
   return (
-    <button className="transparent-border transition-all min-w-[18vw] h-full rounded-xl bg-black scale-95 group font-quicksand text-slate-400 text-xxs">
+    <button
+      onClick={() => redirect(`/${id}`)}
+      className="transparent-border transition-all min-w-[18vw] h-full rounded-xl bg-black scale-95 group font-quicksand text-slate-400 text-xxs"
+    >
       <div className="justify-center w-full h-full rounded-xl mask-image-linear">
         <img
           className="w-full h-full group-hover:mask-image-linear"

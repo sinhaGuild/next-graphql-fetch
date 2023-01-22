@@ -1,5 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import { HeroImage } from "./hero-image";
+import { Loading } from "./loading";
 
 const query = gql`
   query getAllPages {
@@ -23,9 +24,12 @@ const query = gql`
 
 export function HomePage() {
   const { loading, data, error } = useQuery(query);
-  if (loading) <div>loading..</div>;
+  if (loading) {
+    return <Loading />;
+  }
+
   if (error) {
-    console.log(error);
+    return <>{console.log(error)}</>;
   }
   return (
     <>
@@ -39,6 +43,7 @@ export function HomePage() {
                   title={el.title.native}
                   genres={el.genres}
                   description={el.description}
+                  id={el.id}
                 />
               </div>
             );
