@@ -1,5 +1,6 @@
 import classnames from "classnames";
 import { useRouter } from "next/router";
+import React from "react";
 
 export function HeroImage({
   src,
@@ -63,4 +64,33 @@ function stringCat(str: string, limit: number) {
   } else {
     return str;
   }
+}
+
+function HeroImageContainer({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 grid-container">
+      {children}
+    </div>
+  );
+}
+
+function HeroImageGrid({ data }: { data: any }) {
+  // data = data.Page.media.map(() => {})
+  return (
+    <HeroImageContainer>
+      {data.map((hero: any) => {
+        return (
+          <div key={hero.id} className="grid">
+            <HeroImage
+              src={hero.coverImage.extraLarge}
+              title={hero.title.native}
+              genres={hero.genres}
+              description={hero.description}
+              id={hero.id}
+            />
+          </div>
+        );
+      })}
+    </HeroImageContainer>
+  );
 }
