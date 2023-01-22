@@ -1,5 +1,4 @@
 import { gql, useQuery } from "@apollo/client";
-import Image from "next/image";
 import { HeroImage } from "./hero-image";
 
 const query = gql`
@@ -31,15 +30,15 @@ export function HomePage() {
   return (
     <>
       {data && (
-        <div className="grid-container grid grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 grid-container">
           {data.Page.media.map((el: any) => {
             return (
-              <div key={el.id} className="grid-item-width min-w-[20vw]">
+              <div key={el.id} className="grid">
                 <HeroImage
-                  // src={el.bannerImage}
                   src={el.coverImage.extraLarge}
                   title={el.title.native}
                   genres={el.genres}
+                  description={el.description}
                 />
               </div>
             );
