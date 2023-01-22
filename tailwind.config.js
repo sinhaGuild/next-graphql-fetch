@@ -10,6 +10,9 @@ module.exports = {
       fontFamily: {
         quicksand: ["Quicksand", "sans-serif"],
       },
+      fontSize: {
+        "xxs": '0.625rem',
+      }
     },
   },
   plugins: [require('@tailwindcss/line-clamp'),],
